@@ -17,7 +17,6 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email);
   return (
     <View style={styles.container}>
       <Image
