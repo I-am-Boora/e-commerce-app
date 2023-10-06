@@ -12,14 +12,36 @@ import { COLOR } from "../Constraints/colors";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const RegisterScreen = () => {
-  const navigation = useNavigation();
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  console.log(email);
+  const [data, setData] = useState("");
+  //FIXME  console.log(email);
+  const navigation = useNavigation();
+  const handleRegister = () => {
+    const user = { name, email, password };
+    axios
+      .post("http://192.168.25.248:8080/register", user)
+      .then((res) => console.log(res))
+      .catch((error) => console.error(error));
+    // const res = await fetch("http://192.168.25.248:8080/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setData(JSON.stringify(data)))
+    //   .catch((error) => console.log(error));
+    // const res = await axios.get("http://192.168.25.248:8080/home");
+    // console.log(res.data);
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -32,8 +54,8 @@ const RegisterScreen = () => {
         <TextInput
           placeholder="Enter User Name"
           style={styles.inputText}
-          name={user}
-          onChangeText={(text) => setUser(text)}
+          name={name}
+          onChangeText={(text) => setName(text)}
         />
       </View>
       <View style={styles.inputContainer}>
@@ -65,10 +87,7 @@ const RegisterScreen = () => {
           secureTextEntry={true}
         />
       </View>
-      <Pressable
-        style={styles.btnContainer}
-        onPress={() => navigation.navigate("Login")}
-      >
+      <Pressable style={styles.btnContainer} onPress={handleRegister}>
         <Text style={styles.text}>Register</Text>
       </Pressable>
       <View style={styles.textContainer}>

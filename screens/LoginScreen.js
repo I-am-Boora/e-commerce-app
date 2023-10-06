@@ -12,11 +12,24 @@ import { COLOR } from "../Constraints/colors";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = () => {
-  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
+  const handleLogin = () => {
+    const user = { email, password };
+    axios
+      .post("http://192.168.25.248:8080/login", user)
+      .then((res) => {
+        const token = res.data.token;
+        AsyncStorage.setItem("authToken", token);
+        navigation.replace("Home");
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -43,10 +56,7 @@ const LoginScreen = () => {
           secureTextEntry={true}
         />
       </View>
-      <Pressable
-        style={styles.btnContainer}
-        onPress={() => console.log(email, password)}
-      >
+      <Pressable style={styles.btnContainer} onPress={handleLogin}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
       <View style={styles.textContainer}>
