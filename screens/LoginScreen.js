@@ -6,12 +6,12 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { COLOR } from "../Constraints/colors";
 
 import { FontAwesome } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -30,6 +30,13 @@ const LoginScreen = () => {
       })
       .catch((error) => console.log(error));
   };
+  useEffect(() => {
+    const token = AsyncStorage.getItem("authToken");
+    if (token) {
+      navigation.replace("Home");
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
