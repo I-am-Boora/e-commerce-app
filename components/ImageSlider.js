@@ -22,6 +22,6 @@ export default ImageSlider;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: scale(10),
+    // marginTop: scale(10),
   },
 });
