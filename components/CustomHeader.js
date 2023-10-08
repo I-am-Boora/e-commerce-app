@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     padding: scale(5),
-    marginHorizontal: scale(20),
+    marginHorizontal: scale(10),
     borderRadius: scale(6),
     backgroundColor: COLOR.white,
   },

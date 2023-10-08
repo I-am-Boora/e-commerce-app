@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
@@ -11,7 +10,6 @@ import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
-import CustomHeader from "../components/CustomHeader";
 
 const StackNavigation = () => {
   const Stack = createStackNavigator();
@@ -38,9 +36,6 @@ const StackNavigation = () => {
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
             },
-            // header: () => {
-            //   <CustomHeader />;
-            // },
             headerShown: false,
           }}
         />
