@@ -11,6 +11,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
+import CustomHeader from "../components/CustomHeader";
 
 const StackNavigation = () => {
   const Stack = createStackNavigator();
@@ -37,6 +38,10 @@ const StackNavigation = () => {
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
             },
+            // header: () => {
+            //   <CustomHeader />;
+            // },
+            headerShown: false,
           }}
         />
         <Tab.Screen

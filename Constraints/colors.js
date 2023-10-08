@@ -4,4 +4,6 @@ export const COLOR = {
   grey: "#eeeeee",
   yellow: "#fbc02d",
   darkGreen: "#248371",
+  primary: "#69d2cd",
+  secondary: "#b2dfdb",
 };
