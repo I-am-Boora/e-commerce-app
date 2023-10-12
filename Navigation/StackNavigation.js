@@ -3,14 +3,14 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import HomeScreen from "../screens/HomeScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ProductScreen from "../screens/ProductScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
-import { scale, verticalScale } from "react-native-size-matters";
+import { verticalScale } from "react-native-size-matters";
+import ProductInfoScreen from "../screens/ProductInfoScreen";
 
 const StackNavigation = () => {
   const Stack = createStackNavigator();
@@ -104,6 +104,7 @@ const StackNavigation = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={Bottom} />
+      <Stack.Screen name="ProductInfo" component={ProductInfoScreen} />
     </Stack.Navigator>
   );
 };

@@ -1,20 +1,36 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
 import { offers } from "../data";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { COLOR } from "../Constraints/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const Todaydeal = () => {
+  const navigation = useNavigation();
   return (
     <>
-      <View style={{ backgroundColor: "white" }}>
+      <Pressable style={{ backgroundColor: "white" }}>
         <Text style={styles.text}>Today's Deals</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.container}>
             {offers.map((item, index) => {
               return (
-                <View style={styles.subContainer} key={index}>
+                <Pressable
+                  style={styles.subContainer}
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("ProductInfo", {
+                      id: item.id,
+                    })
+                  }
+                >
                   <Image
                     source={{ uri: item.image }}
                     style={styles.image}
@@ -23,12 +39,12 @@ const Todaydeal = () => {
                   <View style={styles.dealBtn}>
                     <Text style={styles.dealText}>Upto {item.offer}</Text>
                   </View>
-                </View>
+                </Pressable>
               );
             })}
           </View>
         </ScrollView>
-      </View>
+      </Pressable>
     </>
   );
 };

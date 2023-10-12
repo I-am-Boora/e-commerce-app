@@ -24,10 +24,6 @@ const ProductScreen = () => {
     { label: "men's clothing", value: "men's clothing" },
     { label: "women's clothing", value: "women's clothing" },
   ]);
-  // const onGenderOpen = useCallback(() => {
-  //   setCompanyOpen(false);
-  // });
-
   useEffect(() => {
     const apiCall = async () => {
       const result = await axios.get("https://fakestoreapi.com/products");
@@ -35,7 +31,7 @@ const ProductScreen = () => {
     };
     apiCall();
   }, []);
-  console.log(data);
+  // console.log(data);
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <CustomHeader />
@@ -45,7 +41,7 @@ const ProductScreen = () => {
         <ImageSlider />
         <TrandingDeal />
         <View style={styles.line} />
-        <Todaydeal />
+        <Todaydeal data={data} />
         <View style={styles.line} />
         <View style={{ flex: 1 }}>
           <View
@@ -66,14 +62,16 @@ const ProductScreen = () => {
               setValue={setCategory}
               setItems={setItems}
               placeholder={category}
-              // onOpen={onGenderOpen}
             />
           </View>
         </View>
         <View style={styles.productItem}>
-          {data?.map((item, index) => {
-            return <ProductItem item={item} key={index} />;
-          })}
+          {data
+            .filter((item, index) => item.category == category)
+            .map((item, index) => {
+              console.log(item);
+              return <ProductItem item={item} key={index} />;
+            })}
         </View>
       </ScrollView>
       <StatusBar backgroundColor={COLOR.primary} />
