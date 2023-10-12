@@ -10,7 +10,7 @@ const Todaydeal = () => {
     <>
       <View style={{ backgroundColor: "white" }}>
         <Text style={styles.text}>Today's Deals</Text>
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.container}>
             {offers.map((item, index) => {
               return (
@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: "center",
     justifyContent: "center",
+    marginHorizontal: scale(8),
+    gap: 8,
   },
   image: {
     width: scale(100),
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
-    width: scale(80),
+    width: scale(90),
     padding: moderateScale(4),
     marginTop: verticalScale(5),
     borderRadius: scale(4),

@@ -10,13 +10,16 @@ import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
+import { scale, verticalScale } from "react-native-size-matters";
 
 const StackNavigation = () => {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
   const Bottom = () => {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{ tabBarStyle: { height: verticalScale(50) } }}
+      >
         <Tab.Screen
           name="Product"
           component={ProductScreen}
@@ -35,6 +38,9 @@ const StackNavigation = () => {
             tabBarLabel: "Home",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
+              fontWeight: 500,
+              fontSize: 12,
+              marginBottom: 5,
             },
             headerShown: false,
           }}
@@ -57,6 +63,9 @@ const StackNavigation = () => {
             tabBarLabel: "Profile",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
+              fontWeight: 500,
+              fontSize: 12,
+              marginBottom: 5,
             },
           }}
         />
@@ -78,6 +87,9 @@ const StackNavigation = () => {
             tabBarLabel: "Cart",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
+              fontWeight: 500,
+              fontSize: 12,
+              marginBottom: 5,
             },
           }}
         />

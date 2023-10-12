@@ -6,4 +6,5 @@ export const COLOR = {
   darkGreen: "#248371",
   primary: "#69d2cd",
   secondary: "#b2dfdb",
+  green: "#00e676",
 };
