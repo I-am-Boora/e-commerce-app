@@ -11,6 +11,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
 import { verticalScale } from "react-native-size-matters";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
+import NewAddressScreen from "../screens/NewAddressScreen";
+import AddAddressScreen from "../screens/AddAddressScreen";
 
 const StackNavigation = () => {
   const Stack = createStackNavigator();
@@ -105,6 +107,8 @@ const StackNavigation = () => {
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={Bottom} />
       <Stack.Screen name="ProductInfo" component={ProductInfoScreen} />
+      <Stack.Screen name="NewAddress" component={NewAddressScreen} />
+      <Stack.Screen name="AddAddress" component={AddAddressScreen} />
     </Stack.Navigator>
   );
 };

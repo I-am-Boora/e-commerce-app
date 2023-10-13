@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { scale, verticalScale } from "react-native-size-matters";
 import { COLOR } from "../Constraints/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-const AddressBar = () => {
+const AddressBar = ({ handleAddressPress }) => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={handleAddressPress}>
       <View style={styles.subContainer}>
         <Ionicons name="location-outline" size={24} color="black" />
         <Text style={styles.text}>Deliver to Sonu Boora - Hansi - 125033</Text>
         <Entypo name="chevron-small-down" size={24} color="black" />
       </View>
-    </View>
+    </Pressable>
   );
 };
 
