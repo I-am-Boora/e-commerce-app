@@ -28,6 +28,7 @@ const Todaydeal = () => {
                   onPress={() =>
                     navigation.navigate("ProductInfo", {
                       id: item.id,
+                      item: item,
                     })
                   }
                 >

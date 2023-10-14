@@ -7,4 +7,5 @@ export const COLOR = {
   primary: "#69d2cd",
   secondary: "#b2dfdb",
   green: "#00e676",
+  lightGrey: "#f1f2f6",
 };

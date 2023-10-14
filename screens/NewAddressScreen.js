@@ -10,16 +10,11 @@ const NewAddressScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <View style={{ height: scale(50), backgroundColor: COLOR.primary }} />
+      <View
+        style={{ height: verticalScale(50), backgroundColor: COLOR.primary }}
+      />
       <View style={{ paddingHorizontal: scale(10) }}>
-        <Text
-          style={[
-            styles.text,
-            { fontSize: scale(15), marginTop: verticalScale(10) },
-          ]}
-        >
-          Add Addresses
-        </Text>
+        <Text style={styles.titleText}>Add Addresses</Text>
         <Pressable
           style={styles.container}
           onPress={() => navigation.navigate("AddAddress")}
@@ -47,5 +42,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: scale(13),
     fontWeight: "500",
+    color: "grey",
+  },
+  titleText: {
+    fontSize: scale(15),
+    marginTop: verticalScale(10),
+    fontWeight: "bold",
   },
 });

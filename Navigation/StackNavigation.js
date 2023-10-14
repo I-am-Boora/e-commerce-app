@@ -9,7 +9,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { COLOR } from "../Constraints/colors";
-import { verticalScale } from "react-native-size-matters";
+import { verticalScale, scale } from "react-native-size-matters";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
 import NewAddressScreen from "../screens/NewAddressScreen";
 import AddAddressScreen from "../screens/AddAddressScreen";
@@ -20,7 +20,10 @@ const StackNavigation = () => {
   const Bottom = () => {
     return (
       <Tab.Navigator
-        screenOptions={{ tabBarStyle: { height: verticalScale(50) } }}
+        screenOptions={{
+          tabBarIconStyle: { marginTop: scale(3) },
+          tabBarStyle: {},
+        }}
       >
         <Tab.Screen
           name="Product"
@@ -28,7 +31,7 @@ const StackNavigation = () => {
           options={{
             tabBarIcon: ({ focused }) => {
               return focused ? (
-                <Ionicons name="home" size={24} color={COLOR.darkGreen} />
+                <Ionicons name="home" size={22} color={COLOR.darkGreen} />
               ) : (
                 <Ionicons
                   name="home-outline"
@@ -40,9 +43,9 @@ const StackNavigation = () => {
             tabBarLabel: "Home",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
-              fontWeight: 500,
-              fontSize: 12,
-              marginBottom: 5,
+              fontWeight: "500",
+              fontSize: scale(10),
+              paddingBottom: scale(3),
             },
             headerShown: false,
           }}
@@ -53,7 +56,7 @@ const StackNavigation = () => {
           options={{
             tabBarIcon: ({ focused }) => {
               return focused ? (
-                <Ionicons name="person" size={24} color={COLOR.darkGreen} />
+                <Ionicons name="person" size={22} color={COLOR.darkGreen} />
               ) : (
                 <Ionicons
                   name="person-outline"
@@ -65,9 +68,9 @@ const StackNavigation = () => {
             tabBarLabel: "Profile",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
-              fontWeight: 500,
-              fontSize: 12,
-              marginBottom: 5,
+              fontWeight: "500",
+              fontSize: scale(10),
+              paddingBottom: scale(3),
             },
           }}
         />
@@ -77,7 +80,7 @@ const StackNavigation = () => {
           options={{
             tabBarIcon: ({ focused }) => {
               return focused ? (
-                <Ionicons name="cart" size={24} color={COLOR.darkGreen} />
+                <Ionicons name="cart" size={22} color={COLOR.darkGreen} />
               ) : (
                 <Ionicons
                   name="cart-outline"
@@ -89,9 +92,9 @@ const StackNavigation = () => {
             tabBarLabel: "Cart",
             tabBarLabelStyle: {
               color: COLOR.darkGreen,
-              fontWeight: 500,
-              fontSize: 12,
-              marginBottom: 5,
+              fontWeight: "500",
+              fontSize: scale(10),
+              paddingBottom: scale(3),
             },
           }}
         />

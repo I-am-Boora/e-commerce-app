@@ -24,7 +24,9 @@ const AddAddressScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <View style={{ height: scale(50), backgroundColor: COLOR.primary }} />
+      <View
+        style={{ height: verticalScale(50), backgroundColor: COLOR.primary }}
+      />
       <ScrollView>
         <KeyboardAvoidingView style={styles.container} behavior="padding">
           <Text style={styles.titleText}>Add a new address</Text>

@@ -24,6 +24,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 
 const ProductScreen = () => {
   const [data, setData] = useState([]);
@@ -36,6 +37,7 @@ const ProductScreen = () => {
     { label: "men's clothing", value: "men's clothing" },
     { label: "women's clothing", value: "women's clothing" },
   ]);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
@@ -51,51 +53,52 @@ const ProductScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: "white" }}>
-      <CustomHeader />
-      <ScrollView>
-        <AddressBar
-          isModalVisible={isModalVisible}
-          setModalVisible={setModalVisible}
-          handleAddressPress={handleAddressPress}
-        />
-        <CategoryList />
-        <ImageSlider />
-        <TrandingDeal />
-        <View style={styles.line} />
-        <Todaydeal data={data} />
-        <View style={styles.line} />
-        <View style={{ flex: 1 }}>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: 15,
-              width: scale(200),
-              marginVertical: verticalScale(10),
-            }}
-          >
-            <DropDownPicker
-              open={open}
-              value={category}
-              items={items}
-              setOpen={setOpen}
-              setValue={setCategory}
-              setItems={setItems}
-              placeholder={category}
-            />
+    <>
+      <SafeAreaView style={{ backgroundColor: "white" }}>
+        <CustomHeader />
+        <ScrollView>
+          <AddressBar
+            isModalVisible={isModalVisible}
+            setModalVisible={setModalVisible}
+            handleAddressPress={handleAddressPress}
+          />
+          <CategoryList />
+          <ImageSlider />
+          <TrandingDeal />
+          <View style={styles.line} />
+          <Todaydeal data={data} />
+          <View style={styles.line} />
+          <View style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                paddingHorizontal: 15,
+                width: scale(200),
+                marginVertical: verticalScale(10),
+              }}
+            >
+              <DropDownPicker
+                open={open}
+                value={category}
+                items={items}
+                setOpen={setOpen}
+                setValue={setCategory}
+                setItems={setItems}
+                placeholder={category}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.productItem}>
-          {data
-            .filter((item, index) => item.category == category)
-            .map((item, index) => {
-              console.log(item);
-              return <ProductItem item={item} key={index} />;
-            })}
-        </View>
-      </ScrollView>
+          <View style={styles.productItem}>
+            {data
+              .filter((item, index) => item.category == category)
+              .map((item, index) => {
+                return <ProductItem item={item} key={index} />;
+              })}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
       <Modal
         isVisible={isModalVisible}
         deviceWidth={width}
@@ -148,8 +151,7 @@ const ProductScreen = () => {
           </Pressable>
         </View>
       </Modal>
-      <StatusBar backgroundColor={COLOR.primary} />
-    </SafeAreaView>
+    </>
   );
 };
 
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingBottom: verticalScale(15),
     position: "absolute",
-    bottom: 0,
+    bottom: scale(-20),
     borderTopLeftRadius: scale(15),
     borderTopRightRadius: scale(15),
     paddingHorizontal: scale(10),

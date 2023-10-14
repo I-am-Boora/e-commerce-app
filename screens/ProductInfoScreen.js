@@ -8,7 +8,7 @@ import {
   Pressable,
   SafeAreaView,
 } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { offers } from "../data";
 import { useRoute } from "@react-navigation/native";
@@ -19,6 +19,8 @@ import { COLOR } from "../Constraints/colors";
 import { useFonts } from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import * as SplashScreen from "expo-splash-screen";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/addToCartSlice";
 
 const ProductInfoScreen = ({}) => {
   SplashScreen.preventAutoHideAsync();
@@ -27,6 +29,17 @@ const ProductInfoScreen = ({}) => {
     "poppins-bold": require("../assets/fonts/Poppins-Bold.ttf"),
     "poppins-light": require("../assets/fonts/Poppins-Light.ttf"),
   });
+  const [addedToCart, setAddedToCart] = useState(false);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  const handleOnPress = (item) => {
+    setAddedToCart(true);
+    dispatch(addToCart(item));
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 60000);
+  };
+  console.log(cart);
   const handleOnLayout = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync(); //hide the splashscreen
@@ -42,7 +55,7 @@ const ProductInfoScreen = ({}) => {
   const discount = Math.round(
     ((data[0].oldPrice - data[0].price) / data[0].oldPrice) * 100
   );
-
+  console.log(cart);
   return (
     <>
       <CustomHeader />
@@ -129,8 +142,13 @@ const ProductInfoScreen = ({}) => {
         >
           In stock
         </Text>
-        <Pressable style={styles.btnContainer}>
-          <Text style={styles.btnText}>Add to cart</Text>
+        <Pressable
+          style={styles.btnContainer}
+          onPress={() => handleOnPress(data[0])}
+        >
+          <Text style={styles.btnText}>
+            {addedToCart ? "Added to cart" : "add to cart"}
+          </Text>
         </Pressable>
         <Pressable style={[styles.btnContainer, { backgroundColor: "orange" }]}>
           <Text style={styles.btnText}>Buy Now</Text>
@@ -172,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: scale(15),
   },
   delivery: {
-    fontSize: scale(15),
+    fontSize: scale(13),
     paddingHorizontal: scale(10),
     color: COLOR.darkGreen,
     marginBottom: verticalScale(5),
